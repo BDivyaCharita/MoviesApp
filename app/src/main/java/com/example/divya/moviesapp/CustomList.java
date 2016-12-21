@@ -19,7 +19,7 @@ public class CustomList extends ArrayAdapter<String>{
     private Activity context;
 
     public CustomList(Activity context, String[] year, String[] titles){
-        super(context, R.layout.list_view_layout);
+        super(context, R.layout.list_view_layout,titles);
         this. context = context;
 
         this.titles = titles;

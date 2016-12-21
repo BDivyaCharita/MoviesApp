@@ -13,7 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String JSON_URL = "http://www.omdbapi.com/?s=Batman";
 
     private ListView listView;
@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         buttonGet =(Button)findViewById(R.id.buttonGet);
-
+        buttonGet.setOnClickListener(this);
         listView = (ListView) findViewById(R.id.listView);
     }
 
-    private void sendResquest(){
+    private void sendRequest(){
 
         StringRequest stringRequest = new StringRequest(JSON_URL,
                 new Response.Listener<String>() {
@@ -55,6 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v){
-        sendResquest();
+        sendRequest();
     }
 }

@@ -35,8 +35,8 @@ public class ParseJSON{
 
             for(int i=0; i<users.length();i++){
                 JSONObject jo = users.getJSONObject(i);
-                titles[i]= (String) jo.get(KEY_TITLE);
-                year[i]= (String) jo.get(KEY_YEAR);
+                titles[i]= jo.getString(KEY_TITLE);
+                year[i]= jo.getString(KEY_YEAR);
 
             }
         } catch (JSONException e) {
