@@ -13,16 +13,15 @@ import android.widget.TextView;
  * Created by Divya on 21-12-2016.
  */
 
-public class CustomList extends ArrayAdapter<String> {
-    private String[] images;
+public class CustomList extends ArrayAdapter<String>{
     private String[] titles;
     private String[] year;
     private Activity context;
 
-    public CustomList(Activity context, String[] images, String[] titles, String[] year){
+    public CustomList(Activity context, String[] year, String[] titles){
         super(context, R.layout.list_view_layout);
         this. context = context;
-        this.images= images;
+
         this.titles = titles;
         this.year= year;
 
@@ -34,7 +33,7 @@ public class CustomList extends ArrayAdapter<String> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.list_view_layout, null, true);
 
-        ImageView imageViewImage= (ImageView) listViewItem.findViewById(R.id.imageViewPoster);
+
         TextView textViewTitle = (TextView) listViewItem.findViewById(R.id.textViewTitle);
         TextView textViewYear= (TextView) listViewItem.findViewById(R.id.textViewYear);
 

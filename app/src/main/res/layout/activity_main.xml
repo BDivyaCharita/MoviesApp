@@ -14,9 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Get Data"
-        android:id="@+id/buttonGet"/>
+        android:id="@+id/buttonGet"
+        android:onClick="onClick"
+        />
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"/>
+        android:id="@+id/listView"
+        android:layout_below="@id/buttonGet"/>
 </RelativeLayout>
