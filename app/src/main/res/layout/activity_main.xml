@@ -10,12 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.divya.moviesapp.MainActivity">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/input"
+        android:hint="@string/name_of_the_movie"/>
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Get Data"
         android:id="@+id/buttonGet"
-
+        android:layout_below="@+id/input"
         />
     <ListView
         android:layout_width="wrap_content"
