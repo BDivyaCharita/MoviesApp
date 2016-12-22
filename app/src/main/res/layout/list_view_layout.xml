@@ -2,13 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/imageViewPoster"
+        android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textViewTitle"
+        android:layout_gravity="center"
         android:text="Title"
+        android:textAlignment="center"
         android:textAppearance="?android:textAppearanceLarge"/>
 
     <TextView
@@ -16,6 +22,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewYear"
         android:text="Year"
+        android:layout_gravity="center"
+        android:textAlignment="center"
         android:textAppearance="?android:textAppearanceMedium"/>
 
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText input;
     private ListView listView;
+
     private Button buttonGet;
     public  String JSON_URL = "http://www.omdbapi.com/?s=";
     /**
@@ -72,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
-        CustomList cl = new CustomList(this, ParseJSON.titles, ParseJSON.year);
+        CustomList cl = new CustomList(this, ParseJSON.titles, ParseJSON.year, ParseJSON.posters);
+
         listView.setAdapter(cl);
     }
 
