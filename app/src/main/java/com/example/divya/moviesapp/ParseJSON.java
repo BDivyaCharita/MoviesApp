@@ -2,6 +2,7 @@ package com.example.divya.moviesapp;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,12 +19,19 @@ import java.net.URL;
 public class ParseJSON{
     public static String[] titles;
     public static String[] year;
-    public static Bitmap[] posters;
+    public static String[] imdbID;
+    public static String[] type;
+    public static String[] poster;
+
 
         public static final String JSON_ARRAY = "Search";
         public static final String KEY_TITLE = "Title";
         public static final String KEY_YEAR = "Year";
-        public static final String KEY_POSTER= "Poster";
+         public static final String KEY_IMDBID = "imdbID";
+        public static final String KEY_TYPE = "Type";
+        public static final String KEY_POSTER = "Poster";
+
+
 
 
     private JSONArray users = null;
@@ -42,27 +50,21 @@ public class ParseJSON{
 
             titles = new String[users.length()];
             year = new String[users.length()];
-            posters= new Bitmap[users.length()];
-
+            imdbID = new String[users.length()];
+            type = new String[users.length()];
+            poster = new String[users.length()];
 
 
             for(int i=0; i<users.length();i++){
                 JSONObject jo = users.getJSONObject(i);
                 titles[i]= jo.getString(KEY_TITLE);
                 year[i]= jo.getString(KEY_YEAR);
-
-                URL url = new URL(KEY_POSTER);
-                Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-
-                posters[i]=bitmap;
-
-
+                type[i]= jo.getString(KEY_TYPE);
+                imdbID[i]= jo.getString(KEY_IMDBID);
+                poster[i]= jo.getString(KEY_POSTER);
+                Log.d("type",type[i]);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
 

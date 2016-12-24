@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:id="@+id/imageViewPoster"
+        android:layout_marginBottom="30dp"/>
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:id="@+id/textViewTitle"
+        android:textAlignment="center"
+        android:text="movie"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="year"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/textViewYear"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="type"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/textViewType"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="imdbID"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/textViewIMDBid"
+        android:textAlignment="center"/>
+
+</LinearLayout>

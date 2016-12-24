@@ -1,10 +1,13 @@
 package com.example.divya.moviesapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button buttonGet;
     public  String JSON_URL = "http://www.omdbapi.com/?s=";
+    public static final int DETAIL_REQUEST = 1;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -48,6 +52,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                for(int j=0; j<20; j++){
+                if(position==j) {
+                    Intent i = new Intent(view.getContext(), DetailActivity.class);
+                    i.putExtra("url", JSON_URL + input.getText().toString());
+                    i.putExtra("position", position);
+                    startActivityForResult(i, DETAIL_REQUEST);
+
+                    Toast.makeText(MainActivity.this, "OKAY", Toast.LENGTH_SHORT).show();
+                }}
+
+
+
+            }
+        });
+
     }
 
 
@@ -74,9 +99,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
-        CustomList cl = new CustomList(this, ParseJSON.titles, ParseJSON.year, ParseJSON.posters);
+        CustomList cl = new CustomList(this, ParseJSON.titles, ParseJSON.year);
 
         listView.setAdapter(cl);
+
     }
 
 
