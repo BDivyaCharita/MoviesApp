@@ -1,8 +1,6 @@
 package com.example.divya.moviesapp;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 /**
  * Created by Divya on 23-12-2016.
@@ -68,17 +67,16 @@ public class DetailActivity extends AppCompatActivity {
         }}
 
     private void showJSON(String json) {
+
         extras = getIntent().getExtras();
         int position = extras.getInt("position");
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
         detailTitle.setText(ParseJSON.titles[position]);
-
-        detailYear.setText(ParseJSON.year[position].toString());
-        detailIMDBid.setText(ParseJSON.imdbID[position].toString());
-        detailType.setText(ParseJSON.type[position].toString());
-
-
+        detailYear.setText("Year: "+ParseJSON.year[position]);
+        detailIMDBid.setText("imdbID: "+ParseJSON.imdbID[position]);
+        detailType.setText("Type: "+ParseJSON.type[position]);
+        Glide.with(this).load(ParseJSON.poster[position]).placeholder(R.mipmap.ic_launcher).into(detailPoster);
 
     }
 

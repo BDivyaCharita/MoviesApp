@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        input = (EditText) findViewById(R.id.input);
 
         buttonGet = (Button) findViewById(R.id.buttonGet);
         buttonGet.setOnClickListener(this);
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
                 for(int j=0; j<20; j++){
                 if(position==j) {
                     Intent i = new Intent(view.getContext(), DetailActivity.class);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
-        CustomList cl = new CustomList(this, ParseJSON.titles, ParseJSON.year);
+        CustomList cl = new CustomList(this, ParseJSON.titles, ParseJSON.year,ParseJSON.poster);
 
         listView.setAdapter(cl);
 
@@ -107,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void onClick(View v) {
+        input = (EditText) findViewById(R.id.input);
+
         sendRequest();
         Log.d("url", JSON_URL);
     }
