@@ -24,12 +24,12 @@ public class ParseJSON{
     public static String[] poster;
 
 
-        public static final String JSON_ARRAY = "Search";
-        public static final String KEY_TITLE = "Title";
-        public static final String KEY_YEAR = "Year";
-         public static final String KEY_IMDBID = "imdbID";
-        public static final String KEY_TYPE = "Type";
-        public static final String KEY_POSTER = "Poster";
+        public static final String JSON_ARRAY = "results";
+        public static final String KEY_TITLE = "original_title";
+        public static final String KEY_YEAR = "release_date";
+         public static final String KEY_ID = "id";
+
+        public static final String KEY_POSTER = "poster_path";
 
 
 
@@ -51,7 +51,7 @@ public class ParseJSON{
             titles = new String[users.length()];
             year = new String[users.length()];
             imdbID = new String[users.length()];
-            type = new String[users.length()];
+
             poster = new String[users.length()];
 
 
@@ -59,8 +59,8 @@ public class ParseJSON{
                 JSONObject jo = users.getJSONObject(i);
                 titles[i]= jo.getString(KEY_TITLE);
                 year[i]= jo.getString(KEY_YEAR);
-                type[i]= jo.getString(KEY_TYPE);
-                imdbID[i]= jo.getString(KEY_IMDBID);
+
+                imdbID[i]= jo.getString(KEY_ID);
                 poster[i]= jo.getString(KEY_POSTER);
                 Log.d("type",type[i]);
             }
