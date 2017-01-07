@@ -72,11 +72,11 @@ public class DetailActivity extends AppCompatActivity {
         int position = extras.getInt("position");
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
-        detailTitle.setText(ParseJSON.titles[position]);
-        detailYear.setText("Year: "+ParseJSON.year[position]);
-        detailIMDBid.setText("imdbID: "+ParseJSON.imdbID[position]);
-        detailType.setText("Type: "+ParseJSON.type[position]);
-        Glide.with(this).load(ParseJSON.poster[position]).placeholder(R.mipmap.ic_launcher).into(detailPoster);
+        detailTitle.setText(ParseJSON.original_title[position]);
+        detailYear.setText("Year: "+ParseJSON.release_date[position]);
+        detailIMDBid.setText("imdbID: "+ParseJSON.original_language[position]);
+        detailType.setText("Type: "+ParseJSON.overview[position]);
+        Glide.with(this).load(ParseJSON.backdrop_path[position]).placeholder(R.mipmap.ic_launcher).into(detailPoster);
 
     }
 

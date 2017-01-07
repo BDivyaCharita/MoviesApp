@@ -17,19 +17,24 @@ import java.net.URL;
  */
 
 public class ParseJSON{
-    public static String[] titles;
-    public static String[] year;
-    public static String[] imdbID;
-    public static String[] type;
-    public static String[] poster;
+    public static String[] poster_path;
+    public static String[] overview;
+    public static String[] release_date;
+    public static String[] original_title;
+    public static String[] original_language;
+    public static String[] backdrop_path;
 
 
         public static final String JSON_ARRAY = "results";
-        public static final String KEY_TITLE = "original_title";
-        public static final String KEY_YEAR = "release_date";
-         public static final String KEY_ID = "id";
-
         public static final String KEY_POSTER = "poster_path";
+        public static final String KEY_OVERVIEW = "overview";
+         public static final String KEY_RELEASE = "release_date";
+
+        public static final String KEY_ORIGINAL_TITLE = "original_title";
+
+     public static final String KEY_ORIGINAL_LANGUAGE = "original_language";
+
+    public static final String KEY_BACKDROP = "backdrop_path";
 
 
 
@@ -48,21 +53,23 @@ public class ParseJSON{
             jsonObject = new JSONObject(json);
             users = jsonObject.getJSONArray(JSON_ARRAY);
 
-            titles = new String[users.length()];
-            year = new String[users.length()];
-            imdbID = new String[users.length()];
+            poster_path = new String[users.length()];
+            overview= new String[users.length()];
+            original_title = new String[users.length()];
 
-            poster = new String[users.length()];
+            original_language= new String[users.length()];
+            backdrop_path= new String[users.length()];
 
 
             for(int i=0; i<users.length();i++){
                 JSONObject jo = users.getJSONObject(i);
-                titles[i]= jo.getString(KEY_TITLE);
-                year[i]= jo.getString(KEY_YEAR);
+                poster_path[i]= jo.getString(KEY_POSTER);
+                overview[i]= jo.getString(KEY_OVERVIEW);
 
-                imdbID[i]= jo.getString(KEY_ID);
-                poster[i]= jo.getString(KEY_POSTER);
-                Log.d("type",type[i]);
+                original_title[i]= jo.getString(KEY_ORIGINAL_TITLE);
+                original_language[i]= jo.getString(KEY_ORIGINAL_LANGUAGE);
+                backdrop_path[i] = jo.getString(KEY_BACKDROP);
+                Log.d("title",original_title[i]);
             }
         } catch (JSONException e) {
             e.printStackTrace();

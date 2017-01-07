@@ -12,6 +12,15 @@ public class Movie {
     private String original_language;
     private String backdrop_path;
 
+    public Movie(String poster_path, String overview, String release_date, String original_title, String original_language, String backdrop_path) {
+        this.poster_path = poster_path;
+        this.overview = overview;
+        this.release_date = release_date;
+        this.original_title = original_title;
+        this.original_language = original_language;
+        this.backdrop_path = backdrop_path;
+    }
+
     public String getPoster_path() {
         return poster_path;
     }
