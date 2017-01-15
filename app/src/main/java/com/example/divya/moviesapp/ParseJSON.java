@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Divya on 21-12-2016.
@@ -23,6 +24,7 @@ public class ParseJSON{
     public static String[] original_title;
     public static String[] original_language;
     public static String[] backdrop_path;
+    public  static Movie movie;
 
 
         public static final String JSON_ARRAY = "results";
@@ -35,6 +37,8 @@ public class ParseJSON{
      public static final String KEY_ORIGINAL_LANGUAGE = "original_language";
 
     public static final String KEY_BACKDROP = "backdrop_path";
+
+    public static List<Movie> finalMovie;
 
 
 
@@ -59,17 +63,22 @@ public class ParseJSON{
 
             original_language= new String[users.length()];
             backdrop_path= new String[users.length()];
+            release_date = new String[users.length()];
+
 
 
             for(int i=0; i<users.length();i++){
                 JSONObject jo = users.getJSONObject(i);
                 poster_path[i]= jo.getString(KEY_POSTER);
                 overview[i]= jo.getString(KEY_OVERVIEW);
-
+                release_date[i]= jo.getString(KEY_RELEASE);
                 original_title[i]= jo.getString(KEY_ORIGINAL_TITLE);
                 original_language[i]= jo.getString(KEY_ORIGINAL_LANGUAGE);
                 backdrop_path[i] = jo.getString(KEY_BACKDROP);
                 Log.d("title",original_title[i]);
+
+                movie = new Movie(poster_path[i],overview[i],release_date[i],original_title[i],original_language[i],backdrop_path[i]);
+
             }
         } catch (JSONException e) {
             e.printStackTrace();

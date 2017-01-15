@@ -21,6 +21,11 @@ public class Movie {
         this.backdrop_path = backdrop_path;
     }
 
+    public Movie(String poster_path, String original_title) {
+        this.poster_path = poster_path;
+        this.original_title = original_title;
+    }
+
     public String getPoster_path() {
         return poster_path;
     }

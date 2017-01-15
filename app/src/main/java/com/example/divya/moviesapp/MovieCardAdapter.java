@@ -18,20 +18,19 @@ import java.util.List;
 
 public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.ViewHolder> {
 
-
-
     private List<Movie> mMovieList;
     private Context mContext;
     private View.OnClickListener mOnClickListener;
 
     private String[] mTitles;
     private String[] mImagesPopular;
-    private Activity context;
+
 
   /*  public MovieCardAdapter(ArrayList<String> mDataset) {
         this.mDataset = mDataset;
     }
     */
+
 
     @Override
     public MovieCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -74,6 +73,7 @@ public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.View
         public TextView mTitle;
         public ImageView mImagePopular;
 
+
         int mPosition;
 
         public ViewHolder(View itemView) {
@@ -85,9 +85,8 @@ public class MovieCardAdapter extends RecyclerView.Adapter<MovieCardAdapter.View
     }
 
 
-    public MovieCardAdapter(Activity context, String[] mImagesPopular, String[] mTitles) {
-        this.mTitles = mTitles;
-        this.mImagesPopular = mImagesPopular;
-        this.context = context;
+    public MovieCardAdapter(Activity context, List<Movie> mMovieList) {
+        this.mContext= context;
+        this.mMovieList=mMovieList;
     }
 }
