@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 dm.setHeaderTitle("Popular");
 
                 for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
                     singleItemDetail.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
                 }
 
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 dm.setHeaderTitle("Top Rated");
 
                 for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
                 }
 
                 dm.setAllItemsInSection(singleItem);
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 dm.setHeaderTitle("Upcoming");
 
                 for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
                 }
 
                 dm.setAllItemsInSection(singleItem);
@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         dm.setHeaderTitle("Now Playing");
 
         for (int j = 0; j <= 10; j++) {
-            singleItem.add(new Movie(ParseJSON.poster_path[j], ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+            singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
         }
 
         dm.setAllItemsInSection(singleItem);

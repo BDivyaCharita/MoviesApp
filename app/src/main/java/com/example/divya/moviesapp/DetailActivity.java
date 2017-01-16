@@ -51,13 +51,13 @@ public class DetailActivity extends AppCompatActivity {
             String poster_path = extras.getString("poster");
             String backdrop_path = extras.getString("backdrop");
 
-            String urlBackdrop ="http://image.tmdb.org/t/p/w185/"+original_language;
+            String urlBackdrop ="http://image.tmdb.org/t/p/w185/"+backdrop_path;
             String urlPoster = "http://image.tmdb.org/t/p/w185/"+poster_path;
 
-            detailTitle.setText(overview);
+            detailTitle.setText(original_title);
             detailYear.setText("Date:" + release_date);
-            detailType.setText("Language: " + backdrop_path);
-            detailOverview.setText("Overview: " + original_title);
+            detailType.setText("Language: " + original_language);
+            detailOverview.setText(overview);
             Glide.with(this).load(urlPoster).placeholder(R.mipmap.ic_launcher).into(detailPoster);
             Glide.with(this).load(urlBackdrop).placeholder(R.mipmap.ic_launcher).into(detailBackdrop);
 

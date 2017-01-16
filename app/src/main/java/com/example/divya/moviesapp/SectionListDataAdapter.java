@@ -42,18 +42,18 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
         Movie singleItem = itemsList.get(i);
         final String url= "https://image.tmdb.org/t/p/w185/"+(singleItem.getPoster_path());
 
+        holder.poster.setText(singleItem.getPoster_path());
         holder.tvTitle.setText(singleItem.getOriginal_title());
+        holder.date.setText(singleItem.getRelease_date());
+        holder.language.setText(singleItem.getOriginal_language());
+        holder.overview.setText(singleItem.getOverview());
+        holder.backdrop.setText(singleItem.getBackdrop_path());
         Glide.with(mContext)
                 .load(url)
                 .centerCrop()
                 .into(holder.itemImage);
         Log.d("url", url);
 
-        holder.poster.setText(singleItem.getPoster_path());
-        holder.date.setText(singleItem.getRelease_date());
-        holder.backdrop.setText(singleItem.getBackdrop_path());
-        holder.language.setText(singleItem.getOriginal_language());
-        holder.overview.setText(singleItem.getOverview());
 
     }
 
@@ -81,14 +81,14 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         public SingleItemRowHolder(View view) {
             super(view);
-
-            this.tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-            this.itemImage = (ImageView) view.findViewById(R.id.itemImage);
-            this.backdrop = (TextView) view.findViewById(R.id.backdrop);
-            this.overview = (TextView) view.findViewById(R.id.overview);
-            this.date = (TextView) view.findViewById(R.id.date);
             this.poster = (TextView)view.findViewById(R.id.poster);
+            this.tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+            this.date = (TextView) view.findViewById(R.id.date);
             this.language = (TextView) view.findViewById(R.id.language);
+            this.overview = (TextView) view.findViewById(R.id.overview);
+
+            this.backdrop = (TextView) view.findViewById(R.id.backdrop);
+            this.itemImage = (ImageView) view.findViewById(R.id.itemImage);
 
 
             view.setOnClickListener(new View.OnClickListener() {

@@ -58,26 +58,26 @@ public class ParseJSON{
             users = jsonObject.getJSONArray(JSON_ARRAY);
 
             poster_path = new String[users.length()];
-            overview= new String[users.length()];
             original_title = new String[users.length()];
-
-            original_language= new String[users.length()];
-            backdrop_path= new String[users.length()];
             release_date = new String[users.length()];
+            original_language= new String[users.length()];
+            overview= new String[users.length()];
+            backdrop_path= new String[users.length()];
+
 
 
 
             for(int i=0; i<users.length();i++){
                 JSONObject jo = users.getJSONObject(i);
                 poster_path[i]= jo.getString(KEY_POSTER);
-                overview[i]= jo.getString(KEY_OVERVIEW);
-                release_date[i]= jo.getString(KEY_RELEASE);
                 original_title[i]= jo.getString(KEY_ORIGINAL_TITLE);
+                release_date[i]= jo.getString(KEY_RELEASE);
                 original_language[i]= jo.getString(KEY_ORIGINAL_LANGUAGE);
+                overview[i]= jo.getString(KEY_OVERVIEW);
                 backdrop_path[i] = jo.getString(KEY_BACKDROP);
                 Log.d("title",original_title[i]);
 
-                movie = new Movie(poster_path[i],overview[i],release_date[i],original_title[i],original_language[i],backdrop_path[i]);
+                movie = new Movie(poster_path[i],original_title[i],release_date[i],original_language[i],overview[i],backdrop_path[i]);
 
             }
         } catch (JSONException e) {
