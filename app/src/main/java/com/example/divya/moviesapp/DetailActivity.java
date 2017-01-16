@@ -22,9 +22,10 @@ public class DetailActivity extends AppCompatActivity {
 
     private TextView detailTitle;
     private TextView detailYear;
-    private TextView detailIMDBid;
+    private TextView detailOverview;
     private TextView detailType;
     private ImageView detailPoster;
+    private ImageView detailBackdrop;
 
 
 
@@ -35,10 +36,32 @@ public class DetailActivity extends AppCompatActivity {
 
         detailTitle = (TextView) findViewById(R.id.textViewTitle);
         detailYear = (TextView) findViewById(R.id.textViewYear);
-        detailIMDBid= (TextView)findViewById(R.id.textViewIMDBid);
+        detailOverview= (TextView)findViewById(R.id.textViewIMDBid);
         detailType= (TextView) findViewById(R.id.textViewType);
         detailPoster = (ImageView) findViewById(R.id.imageViewPoster);
-        sendRequest();
+        detailBackdrop = (ImageView)findViewById(R.id.backdrop);
+
+        extras = getIntent().getExtras();
+
+        if (extras != null) {
+            String original_title = extras.getString("title");
+            String release_date = extras.getString("date");
+            String original_language = extras.getString("language");
+            String overview = extras.getString("overview");
+            String poster_path = extras.getString("poster");
+            String backdrop_path = extras.getString("backdrop");
+
+            String urlBackdrop ="http://image.tmdb.org/t/p/w185/"+original_language;
+            String urlPoster = "http://image.tmdb.org/t/p/w185/"+poster_path;
+
+            detailTitle.setText(overview);
+            detailYear.setText("Date:" + release_date);
+            detailType.setText("Language: " + backdrop_path);
+            detailOverview.setText("Overview: " + original_title);
+            Glide.with(this).load(urlPoster).placeholder(R.mipmap.ic_launcher).into(detailPoster);
+            Glide.with(this).load(urlBackdrop).placeholder(R.mipmap.ic_launcher).into(detailBackdrop);
+
+        }
     }
 
 
@@ -67,16 +90,19 @@ public class DetailActivity extends AppCompatActivity {
         }}
 
     private void showJSON(String json) {
+        String u = "http://image.tmdb.org/t/p/w185/";
 
         extras = getIntent().getExtras();
         int position = extras.getInt("position");
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
         detailTitle.setText(ParseJSON.original_title[position]);
-        detailYear.setText("Year: "+ParseJSON.release_date[position]);
-        detailIMDBid.setText("imdbID: "+ParseJSON.original_language[position]);
+        detailYear.setText("Date: "+ParseJSON.release_date[position]);
+        detailOverview.setText("imdbID: "+ParseJSON.original_language[position]);
         detailType.setText("Type: "+ParseJSON.overview[position]);
-        Glide.with(this).load(ParseJSON.backdrop_path[position]).placeholder(R.mipmap.ic_launcher).into(detailPoster);
+        Glide.with(this).load(u+ParseJSON.poster_path[position]).placeholder(R.mipmap.ic_launcher).into(detailPoster);
+        Glide.with(this).load(u+ParseJSON.backdrop_path[position]).placeholder(R.mipmap.ic_launcher).into(detailBackdrop);
+
 
     }
 

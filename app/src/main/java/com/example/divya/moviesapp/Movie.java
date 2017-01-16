@@ -11,6 +11,7 @@ public class Movie {
     private  String original_title;
     private String original_language;
     private String backdrop_path;
+    private String url;
 
     public Movie(String poster_path, String overview, String release_date, String original_title, String original_language, String backdrop_path) {
         this.poster_path = poster_path;
@@ -19,6 +20,7 @@ public class Movie {
         this.original_title = original_title;
         this.original_language = original_language;
         this.backdrop_path = backdrop_path;
+
     }
 
     public Movie(String poster_path, String original_title) {

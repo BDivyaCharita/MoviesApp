@@ -6,6 +6,7 @@
     android:orientation="horizontal"
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true"
+    android:background="#ECEFF1"
     >
 
     <LinearLayout
@@ -18,7 +19,7 @@
         <ImageView
             android:id="@+id/itemImage"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher" />
@@ -32,8 +33,30 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="Sample title"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textColor="#37474F"
+            android:textAppearance="?android:textAppearanceSmall" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/backdrop"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/overview"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/poster"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/language"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/date"/>
+
+
 
 
     </LinearLayout>

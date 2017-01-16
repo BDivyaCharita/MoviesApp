@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<SectionDataModel> allSampleData;
    private ProgressDialog pd;
+    ArrayList<SectionDataModel> detail;
 
 
     @Override
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         allSampleData = new ArrayList<SectionDataModel>();
+        detail = new ArrayList<SectionDataModel>();
 
 
         RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
@@ -51,82 +53,189 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendRequest(){
-        String JSON_URL = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
-        StringRequest stringRequest = new StringRequest(JSON_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        createData(response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
+        String JSON_URL="";
+        final String JSON_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        final String JSON_URL_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        final String JSON_URL_UPCOMING = "https://api.themoviedb.org/3/movie/upcoming?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        final String JSON_URL_NOW_PLAYING = "https://api.themoviedb.org/3/movie/now_playing?api_key=6b7085c6deee4086616c8dae1c1ada12";
 
 
-    public void createData(String json) {
-        ParseJSON pj = new ParseJSON(json);
-        pj.parseJSON();
-        for (int i = 1; i <= 4; i++) {
 
-            SectionDataModel dm = new SectionDataModel();
-            ArrayList<Movie> singleItem = new ArrayList<Movie>();
-            if(i==1) {
-                dm.setHeaderTitle("Popular");
+        String URL = "https://api.themoviedb.org/3/movie/";
+        String API_KEY = "?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        String POPULAR = "popular";
+        String TOP_RATED= "top_rated";
+        String UPCOMING = "upcoming";
+        String NOW_PLAYING = "now_playing";
 
-                for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j]));
-                }
+        for (int i = 1; i <=4 ; i++) {
+            if(i==1){
+                JSON_URL = JSON_URL_POPULAR;
+                StringRequest stringRequest = new StringRequest( JSON_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                createDataPopular(response);
 
-                dm.setAllItemsInSection(singleItem);
-
-                allSampleData.add(dm);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        });
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                requestQueue.add(stringRequest);
 
             }
-            if(i==2) {
-                dm.setHeaderTitle("Top Rated");
-                for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie("Item " + j, "URL " + j));
-                }
+                else if(i==2){
+                JSON_URL = JSON_URL_TOP_RATED;
+                StringRequest stringRequest = new StringRequest( JSON_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                createDataTop(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        });
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                requestQueue.add(stringRequest);
 
-                dm.setAllItemsInSection(singleItem);
+            }
+            else if(i==3){
+                JSON_URL = JSON_URL_UPCOMING;
+                StringRequest stringRequest = new StringRequest( JSON_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                createDataUpcoming(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        });
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                requestQueue.add(stringRequest);
 
-                allSampleData.add(dm);
+            }
+            else{
+                JSON_URL = JSON_URL_NOW_PLAYING;
+                StringRequest stringRequest = new StringRequest( JSON_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                createDataNowPlaying(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                            }
+                        });
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                requestQueue.add(stringRequest);
+
             }
 
-
-            if(i==3) {
-                dm.setHeaderTitle("Upcoming");
-                for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie("Item " + j, "URL " + j));
-                }
-
-                dm.setAllItemsInSection(singleItem);
-
-                allSampleData.add(dm);
-            }
-
-
-            if(i==4) {
-                for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie("Item " + j, "URL " + j));
-                }
-
-                dm.setAllItemsInSection(singleItem);
-
-                allSampleData.add(dm);
-            }
 
 
 
         }
+
+
+    }
+
+
+    public void createDataPopular(String json) {
+        ParseJSON pj = new ParseJSON(json);
+        pj.parseJSON();
+
+            SectionDataModel dm = new SectionDataModel();
+            ArrayList<Movie> singleItem = new ArrayList<Movie>();
+            ArrayList<Movie> singleItemDetail = new ArrayList<Movie>();
+
+                dm.setHeaderTitle("Popular");
+
+                for (int j = 0; j <= 10; j++) {
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+                    singleItemDetail.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+                }
+
+                dm.setAllItemsInSection(singleItem);
+
+                allSampleData.add(dm);
+
+
+          }
+
+
+    public void createDataTop(String json) {
+        ParseJSON pj = new ParseJSON(json);
+        pj.parseJSON();
+
+            SectionDataModel dm = new SectionDataModel();
+            ArrayList<Movie> singleItem = new ArrayList<Movie>();
+                dm.setHeaderTitle("Top Rated");
+
+                for (int j = 0; j <= 10; j++) {
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+                }
+
+                dm.setAllItemsInSection(singleItem);
+
+                allSampleData.add(dm);
+
+
+    }
+
+    public void createDataUpcoming(String json) {
+        ParseJSON pj = new ParseJSON(json);
+        pj.parseJSON();
+
+            SectionDataModel dm = new SectionDataModel();
+            ArrayList<Movie> singleItem = new ArrayList<Movie>();
+
+                dm.setHeaderTitle("Upcoming");
+
+                for (int j = 0; j <= 10; j++) {
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+                }
+
+                dm.setAllItemsInSection(singleItem);
+
+                allSampleData.add(dm);
+
+
+    }
+
+    public void createDataNowPlaying(String json) {
+        ParseJSON pj = new ParseJSON(json);
+        pj.parseJSON();
+
+        SectionDataModel dm = new SectionDataModel();
+        ArrayList<Movie> singleItem = new ArrayList<Movie>();
+
+        dm.setHeaderTitle("Now Playing");
+
+        for (int j = 0; j <= 10; j++) {
+            singleItem.add(new Movie(ParseJSON.poster_path[j], ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
+        }
+
+        dm.setAllItemsInSection(singleItem);
+
+        allSampleData.add(dm);
+
+
     }
 
 }
