@@ -192,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 dm.setAllItemsInSection(singleItem);
-
                 allSampleData.add(dm);
 
 

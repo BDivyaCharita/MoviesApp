@@ -1,6 +1,7 @@
 package com.example.divya.moviesapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +42,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
 
         final String sectionName = dataList.get(i).getHeaderTitle();
 
-        ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
+        final ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
 
         itemRowHolder.itemTitle.setText(sectionName);
 

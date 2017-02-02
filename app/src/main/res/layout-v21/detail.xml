@@ -8,7 +8,7 @@
         android:id="@+id/backdrop"
         android:src="@mipmap/ic_launcher"
         android:scaleType="fitXY"
-        android:elevation="3dp"/>
+        android:elevation="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,12 +34,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:paddingLeft="15dp">
+            android:paddingLeft="10dp">
     <TextView
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceLarge"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textStyle="bold"
         android:id="@+id/textViewTitle"
         android:text="movie"/>
     <TextView
@@ -47,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="year"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:textAppearance="?android:textAppearanceSmall"
         android:layout_below="@+id/textViewTitle"
         android:id="@+id/textViewYear" />
             
@@ -56,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="type"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:textAppearance="?android:textAppearanceSmall"
         android:layout_below="@+id/textViewYear"
         android:id="@+id/textViewType" />
 
@@ -68,15 +69,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:text="@string/overview"
+        android:textStyle="bold"
         android:layout_below="@+id/linear"
         android:id="@+id/head_overview"
-        android:textAppearance="?android:textAppearanceLarge"/>
+        android:layout_marginLeft="10dp"
+        android:textAppearance="?android:textAppearanceMedium"/>
     <TextView
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="overview"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:textAppearance="?android:textAppearanceSmall"
         android:layout_below="@+id/head_overview"
         android:id="@+id/textViewIMDBid" />
 

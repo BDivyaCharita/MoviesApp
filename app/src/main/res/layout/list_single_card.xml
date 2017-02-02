@@ -31,8 +31,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="5dp"
+            android:textStyle="bold"
             android:text="Sample title"
-            android:textColor="#37474F"
+            android:textColor="#263238"
             android:textAppearance="?android:textAppearanceSmall" />
         <TextView
             android:layout_width="0dp"

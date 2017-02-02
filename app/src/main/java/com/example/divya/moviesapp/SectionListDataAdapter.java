@@ -40,7 +40,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
     @Override
     public void onBindViewHolder(SingleItemRowHolder holder, int i) {
         Movie singleItem = itemsList.get(i);
-        final String url= "https://image.tmdb.org/t/p/w185/"+(singleItem.getPoster_path());
+        final String url= "https://image.tmdb.org/t/p/w300/"+(singleItem.getPoster_path());
 
         holder.poster.setText(singleItem.getPoster_path());
         holder.tvTitle.setText(singleItem.getOriginal_title());
@@ -53,7 +53,6 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
                 .centerCrop()
                 .into(holder.itemImage);
         Log.d("url", url);
-
 
     }
 
