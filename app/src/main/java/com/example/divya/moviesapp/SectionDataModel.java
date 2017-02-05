@@ -20,7 +20,9 @@ public class SectionDataModel {
         this.allItemsInSection = allItemsInSection;
     }
 
-
+    public SectionDataModel(ArrayList<Movie> allItemsInSection) {
+        this.allItemsInSection = allItemsInSection;
+    }
 
     public String getHeaderTitle() {
         return headerTitle;

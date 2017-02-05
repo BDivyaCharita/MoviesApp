@@ -43,10 +43,27 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
         final String sectionName = dataList.get(i).getHeaderTitle();
 
         final ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
+        String url = "";
 
         itemRowHolder.itemTitle.setText(sectionName);
+        if(sectionName.equals("Popular")){
+            url = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        }
+
+        else if(sectionName.equals("Upcoming")){
+            url = "https://api.themoviedb.org/3/movie/upcoming?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        }
+
+        else if(sectionName.equals("Top Rated")){
+            url = "https://api.themoviedb.org/3/movie/top_rated?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        }
+
+        else if(sectionName.equals("Now Playing")){
+            url = "https://api.themoviedb.org/3/movie/now_playing?api_key=6b7085c6deee4086616c8dae1c1ada12";
+        }
 
         SectionListDataAdapter itemListDataAdapter = new SectionListDataAdapter(mContext,singleSectionItems);
+        final String URL = url;
 
         itemRowHolder.recycler_view_list.setHasFixedSize(true);
         itemRowHolder.recycler_view_list.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
@@ -57,11 +74,10 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
             @Override
             public void onClick(View v) {
 
-
+                Intent i=new Intent(v.getContext(),MoreMovies.class);
+                i.putExtra("url", URL);
+                v.getContext().startActivity(i);
                 Toast.makeText(v.getContext(), "click event on more, "+sectionName , Toast.LENGTH_SHORT).show();
-
-
-
             }
         });
 

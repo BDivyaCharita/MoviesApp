@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         allSampleData = new ArrayList<SectionDataModel>();
         detail = new ArrayList<SectionDataModel>();
 
-
         RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         pd = new ProgressDialog(MainActivity.this);
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         my_recycler_view.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         my_recycler_view.setAdapter(adapter);
-
 
     }
 
@@ -115,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 createDataUpcoming(response);
+
                             }
                         },
                         new Response.ErrorListener() {
@@ -147,14 +146,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
-
-
         }
 
-
     }
-
 
     public void createDataPopular(String json) {
         ParseJSON pj = new ParseJSON(json);
@@ -162,14 +156,13 @@ public class MainActivity extends AppCompatActivity {
 
             SectionDataModel dm = new SectionDataModel();
             ArrayList<Movie> singleItem = new ArrayList<Movie>();
-            ArrayList<Movie> singleItemDetail = new ArrayList<Movie>();
 
                 dm.setHeaderTitle("Popular");
+                String url ="https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
 
                 for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
-                    singleItemDetail.add(new Movie(ParseJSON.poster_path[j],ParseJSON.original_title[j],ParseJSON.release_date[j],ParseJSON.overview[j],ParseJSON.backdrop_path[j],ParseJSON.original_language[j]));
-                }
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j],url));
+                   }
 
                 dm.setAllItemsInSection(singleItem);
 
@@ -186,9 +179,10 @@ public class MainActivity extends AppCompatActivity {
             SectionDataModel dm = new SectionDataModel();
             ArrayList<Movie> singleItem = new ArrayList<Movie>();
                 dm.setHeaderTitle("Top Rated");
+                String url = "https://api.themoviedb.org/3/movie/top_rated?api_key=6b7085c6deee4086616c8dae1c1ada12";
 
                 for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j],url));
                 }
 
                 dm.setAllItemsInSection(singleItem);
@@ -203,11 +197,11 @@ public class MainActivity extends AppCompatActivity {
 
             SectionDataModel dm = new SectionDataModel();
             ArrayList<Movie> singleItem = new ArrayList<Movie>();
-
                 dm.setHeaderTitle("Upcoming");
+        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key=6b7085c6deee4086616c8dae1c1ada12";
 
                 for (int j = 0; j <= 10; j++) {
-                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
+                    singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j],url));
                 }
 
                 dm.setAllItemsInSection(singleItem);
@@ -225,9 +219,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Movie> singleItem = new ArrayList<Movie>();
 
         dm.setHeaderTitle("Now Playing");
+        String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=6b7085c6deee4086616c8dae1c1ada12";
 
         for (int j = 0; j <= 10; j++) {
-            singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j]));
+            singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j],url));
         }
 
         dm.setAllItemsInSection(singleItem);

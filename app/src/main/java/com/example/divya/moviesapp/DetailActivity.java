@@ -51,7 +51,7 @@ public class DetailActivity extends AppCompatActivity {
             String poster_path = extras.getString("poster");
             String backdrop_path = extras.getString("backdrop");
 
-            String urlBackdrop ="http://image.tmdb.org/t/p/w185/"+backdrop_path;
+            String urlBackdrop ="http://image.tmdb.org/t/p/w780/"+backdrop_path;
             String urlPoster = "http://image.tmdb.org/t/p/w185/"+poster_path;
 
             detailTitle.setText(original_title);

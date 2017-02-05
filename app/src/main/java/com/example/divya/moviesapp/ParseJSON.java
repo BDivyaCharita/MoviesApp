@@ -24,6 +24,7 @@ public class ParseJSON{
     public static String[] original_title;
     public static String[] original_language;
     public static String[] backdrop_path;
+    public static String[] url;
     public  static Movie movie;
 
 
@@ -63,7 +64,7 @@ public class ParseJSON{
             original_language= new String[users.length()];
             overview= new String[users.length()];
             backdrop_path= new String[users.length()];
-
+            url = new String[users.length()];
 
 
 
@@ -77,7 +78,7 @@ public class ParseJSON{
                 backdrop_path[i] = jo.getString(KEY_BACKDROP);
                 Log.d("title",original_title[i]);
 
-                movie = new Movie(poster_path[i],original_title[i],release_date[i],original_language[i],overview[i],backdrop_path[i]);
+                movie = new Movie(poster_path[i],original_title[i],release_date[i],original_language[i],overview[i],backdrop_path[i],url[i]);
 
             }
         } catch (JSONException e) {
