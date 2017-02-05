@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ECEFF1"
     android:id="@+id/activity_main"
@@ -74,13 +74,7 @@
   </android.support.design.widget.CollapsingToolbarLayout>
 
   </android.support.design.widget.AppBarLayout>
-    <android.support.v7.widget.RecyclerView
-
-        android:id="@+id/my_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
+    <include layout="@layout/content_main" />
 
 
 </android.support.design.widget.CoordinatorLayout>
