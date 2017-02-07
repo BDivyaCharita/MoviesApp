@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         
         initCollapsingToolbar();
-        
-        allSampleData = new ArrayList<SectionDataModel>();
-        detail = new ArrayList<SectionDataModel>();
 
         RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        allSampleData = new ArrayList<SectionDataModel>();
+        detail = new ArrayList<SectionDataModel>();
 
         pd = new ProgressDialog(MainActivity.this);
         pd.setMessage("Loading...");

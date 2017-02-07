@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -7,7 +8,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ECEFF1"
     android:id="@+id/activity_main"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true">
 
   <android.support.design.widget.AppBarLayout
       android:id="@+id/appbar"
@@ -74,6 +76,7 @@
   </android.support.design.widget.CollapsingToolbarLayout>
 
   </android.support.design.widget.AppBarLayout>
+
     <include layout="@layout/content_main" />
 
 
