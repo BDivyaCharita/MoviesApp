@@ -35,11 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        
-        initCollapsingToolbar();
 
         RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initCollapsingToolbar() {
+   /* private void initCollapsingToolbar() {
 
         final CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+*/
     private void sendRequest(){
         String JSON_URL="";
         final String JSON_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
@@ -274,7 +273,6 @@ public class MainActivity extends AppCompatActivity {
         dm.setAllItemsInSection(singleItem);
 
         allSampleData.add(dm);
-
 
     }
 
