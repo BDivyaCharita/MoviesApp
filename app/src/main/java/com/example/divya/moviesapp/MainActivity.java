@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -50,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         sendRequest();
 
         my_recycler_view.setHasFixedSize(true);
+
+        pd.show();
 
         RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(this, allSampleData);
 
@@ -95,6 +101,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 */
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
+
+       MenuItem searchItem = menu.findItem(R.id.action_search);
+       SearchView searchView =
+               (SearchView) MenuItemCompat.getActionView(searchItem);
+
+       // Configure the search info and add any event listeners...
+
+       return super.onCreateOptionsMenu(menu);
+   }
+
     private void sendRequest(){
         String JSON_URL="";
         final String JSON_URL_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
@@ -119,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 createDataPopular(response);
+                                pd.dismiss();
 
                             }
                         },

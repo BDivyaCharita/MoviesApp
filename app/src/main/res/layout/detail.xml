@@ -1,86 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/backdrop"
-        android:src="@mipmap/ic_launcher"
-        android:scaleType="fitXY"
-        android:elevation="3dp"/>
-
-    <LinearLayout
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:titleTextColor="#FFFFFF"
+        />
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/backdrop"
-        android:id="@+id/linear"
-        >
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:paddingTop="20dp"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_gravity="start"
-        android:id="@+id/imageViewPoster"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/backdrop"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="fitXY"
+            android:elevation="3dp"/>
 
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:src="@mipmap/ic_launcher"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:paddingLeft="20dp"
+            android:background="#F5F5F5"
+            android:id="@+id/linear">
 
+            <ImageView
+                android:padding="1dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="start"
+                android:id="@+id/imageViewPoster"
+                android:src="@mipmap/ic_launcher"
+                />
 
-        <RelativeLayout
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="75dp"
+                android:paddingLeft="10dp">
+                <TextView
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:id="@+id/textViewTitle"
+                    android:textStyle="bold"
+                    android:text="movie"/>
+                <TextView
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="year"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:layout_below="@+id/textViewTitle"
+                    android:id="@+id/textViewYear" />
+
+                <TextView
+                    android:layout_margin="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="type"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:layout_below="@+id/textViewYear"
+                    android:id="@+id/textViewType" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:paddingLeft="10dp">
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:id="@+id/textViewTitle"
-        android:textStyle="bold"
-        android:text="movie"/>
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="year"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:layout_below="@+id/textViewTitle"
-        android:id="@+id/textViewYear" />
-
-    <TextView
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="type"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:layout_below="@+id/textViewYear"
-        android:id="@+id/textViewType" />
-
+            android:paddingTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/overview"
+            android:layout_below="@+id/linear"
+            android:id="@+id/head_overview"
+            android:textAppearance="?android:textAppearanceMedium"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="overview"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:layout_below="@+id/head_overview"
+            android:id="@+id/textViewIMDBid" />
 
     </RelativeLayout>
-
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="@string/overview"
-        android:layout_below="@+id/linear"
-        android:id="@+id/head_overview"
-        android:textAppearance="?android:textAppearanceMedium"/>
-    <TextView
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="overview"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:layout_below="@+id/head_overview"
-        android:id="@+id/textViewIMDBid" />
-
-
-</RelativeLayout>
+</LinearLayout>

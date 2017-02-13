@@ -1,10 +1,13 @@
 package com.example.divya.moviesapp;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,12 +30,17 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView detailPoster;
     private ImageView detailBackdrop;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowHomeEnabled(true);
 
         detailTitle = (TextView) findViewById(R.id.textViewTitle);
         detailYear = (TextView) findViewById(R.id.textViewYear);
@@ -55,15 +63,22 @@ public class DetailActivity extends AppCompatActivity {
             String urlPoster = "http://image.tmdb.org/t/p/w185/"+poster_path;
 
             detailTitle.setText(original_title);
-            detailYear.setText("Date:" + release_date);
-            detailType.setText("Language: " + original_language);
+            detailYear.setText(release_date);
+            detailType.setText(original_language);
             detailOverview.setText(overview);
-            Glide.with(this).load(urlPoster).placeholder(R.mipmap.ic_launcher).into(detailPoster);
             Glide.with(this).load(urlBackdrop).placeholder(R.mipmap.ic_launcher).into(detailBackdrop);
-
+            Glide.with(this).load(urlPoster).placeholder(R.mipmap.ic_launcher).into(detailPoster);
         }
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
 
     private void sendRequest() {
 
@@ -91,17 +106,18 @@ public class DetailActivity extends AppCompatActivity {
 
     private void showJSON(String json) {
         String u = "http://image.tmdb.org/t/p/w185/";
+        String v ="http://image.tmdb.org/t/p/w780/";
 
         extras = getIntent().getExtras();
         int position = extras.getInt("position");
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
         detailTitle.setText(ParseJSON.original_title[position]);
-        detailYear.setText("Date: "+ParseJSON.release_date[position]);
-        detailOverview.setText("imdbID: "+ParseJSON.original_language[position]);
-        detailType.setText("Type: "+ParseJSON.overview[position]);
+        detailYear.setText(ParseJSON.release_date[position]);
+        detailOverview.setText(ParseJSON.original_language[position]);
+        detailType.setText(ParseJSON.overview[position]);
         Glide.with(this).load(u+ParseJSON.poster_path[position]).placeholder(R.mipmap.ic_launcher).into(detailPoster);
-        Glide.with(this).load(u+ParseJSON.backdrop_path[position]).placeholder(R.mipmap.ic_launcher).into(detailBackdrop);
+        Glide.with(this).load(v+ParseJSON.backdrop_path[position]).placeholder(R.mipmap.ic_launcher).into(detailBackdrop);
 
 
     }
