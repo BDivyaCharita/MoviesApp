@@ -85,36 +85,7 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
-    /* private void initCollapsingToolbar() {
 
-            final CollapsingToolbarLayout collapsingToolbar =
-                    (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-            collapsingToolbar.setTitle(" ");
-            AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-            appBarLayout.setExpanded(true);
-
-            // hiding & showing the title when toolbar expanded & collapsed
-            appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-                boolean isShow = false;
-                int scrollRange = -1;
-
-                @Override
-                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                    if (scrollRange == -1) {
-                        scrollRange = appBarLayout.getTotalScrollRange();
-                    }
-                    if (scrollRange + verticalOffset == 0) {
-                        collapsingToolbar.setTitle(getString(R.string.app_name));
-                        isShow = true;
-                    } else if (isShow) {
-                        collapsingToolbar.setTitle(" ");
-                        isShow = false;
-                    }
-                }
-            });
-        }
-
-    */
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
        getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
@@ -138,11 +109,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         String URL = "https://api.themoviedb.org/3/movie/";
-        String API_KEY = "?api_key=6b7085c6deee4086616c8dae1c1ada12";
+      /*  String API_KEY = "?api_key=6b7085c6deee4086616c8dae1c1ada12";
         String POPULAR = "popular";
         String TOP_RATED= "top_rated";
         String UPCOMING = "upcoming";
         String NOW_PLAYING = "now_playing";
+        */
 
         for (int i = 1; i <=4 ; i++) {
             if(i==1){
