@@ -45,18 +45,7 @@ public class MoreMovies extends AppCompatActivity {
     }
 
     private void prepareAlbums() {
-        int[] covers = new int[]{
-                R.drawable.album1,
-                R.drawable.album2,
-                R.drawable.album3,
-                R.drawable.album4,
-                R.drawable.album5,
-                R.drawable.album6,
-                R.drawable.album7,
-                R.drawable.album8,
-                R.drawable.album9,
-                R.drawable.album10,
-                R.drawable.album11};
+
 
         Movie a = new Movie("True Romance", "13");
         moreMoviesList.add(a);
