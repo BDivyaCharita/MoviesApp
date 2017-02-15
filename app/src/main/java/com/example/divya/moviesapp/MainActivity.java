@@ -98,11 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         my_recycler_view.setAdapter(adapter);
 
-        try {
-            Glide.with(this).load(R.drawable.cover).into((ImageView) findViewById(R.id.backdrop));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
     }
 

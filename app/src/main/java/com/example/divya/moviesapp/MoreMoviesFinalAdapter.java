@@ -34,7 +34,7 @@ public class MoreMoviesFinalAdapter extends RecyclerView.Adapter<MoreMoviesFinal
     public void onBindViewHolder(ItemHolder holder, int position) {
         final ArrayList singleSectionItems = dataList.get(position).getAllItemsInSection();
 
-        SectionListDataAdapter itemListDataAdapter = new SectionListDataAdapter(mContext,singleSectionItems);
+        MoreMoviesAdapter itemListDataAdapter = new MoreMoviesAdapter(mContext,singleSectionItems);
 
         holder.recycler_view_list.setHasFixedSize(true);
         holder.recycler_view_list.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
