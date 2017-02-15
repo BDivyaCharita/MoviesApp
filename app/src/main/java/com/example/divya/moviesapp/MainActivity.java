@@ -1,12 +1,15 @@
 package com.example.divya.moviesapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
    private ProgressDialog pd;
     ArrayList<SectionDataModel> detail;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +56,37 @@ public class MainActivity extends AppCompatActivity {
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,myToolbar,R.string.drawer_open,R.string.drawer_close);
 
-        RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        navigationView = (NavigationView)findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                Intent intent;
+                switch (item.getItemId())
+               {
+                   case R.id.movies:
+                       //
+                       break;
+                   case R.id.tvShows:
+                       intent = new Intent(MainActivity.this, TvShowsActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                       startActivity(intent);
+               }
+
+                return false;
+            }
+        });
+
+
 
         allSampleData = new ArrayList<SectionDataModel>();
         detail = new ArrayList<SectionDataModel>();
-
+        sendRequest();
+        RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
         pd = new ProgressDialog(MainActivity.this);
         pd.setMessage("Loading...");
-        sendRequest();
+
 
         my_recycler_view.setHasFixedSize(true);
 
@@ -258,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
                 dm.setAllItemsInSection(singleItem);
 
                 allSampleData.add(dm);
-
 
     }
 

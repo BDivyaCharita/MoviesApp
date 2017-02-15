@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -24,7 +25,8 @@ public class MoreMovies extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ArrayList<Movie> moreMoviesList;
-    private MoreMoviesAdapter adapter;
+    ArrayList<SectionDataModel> allSampleData;
+    private MoreMoviesFinalAdapter adapter;
     Context mContext;
     Bundle extras;
     @Override
@@ -32,16 +34,20 @@ public class MoreMovies extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_card);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        allSampleData = new ArrayList<SectionDataModel>();
+        sendRequest();
         recyclerView = (RecyclerView) findViewById(R.id.more_recycler_view);
 
-        moreMoviesList = new ArrayList<Movie>();
-
-        adapter = new MoreMoviesAdapter(this, moreMoviesList);
+        adapter = new MoreMoviesFinalAdapter(this, allSampleData);
         recyclerView.hasFixedSize();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
-        prepareAlbums();
+
+
     }
 
     private void prepareAlbums() {
@@ -114,13 +120,15 @@ public class MoreMovies extends AppCompatActivity {
         pj.parseJSON();
 
         String url= "";
-
+        SectionDataModel dm = new SectionDataModel();
         ArrayList<Movie> singleItem = new ArrayList<Movie>();
 
         for (int j = 0; j <= 10; j++) {
             singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j],url));
         }
+        dm.setAllItemsInSection(singleItem);
 
+        allSampleData.add(dm);
 
 
     }

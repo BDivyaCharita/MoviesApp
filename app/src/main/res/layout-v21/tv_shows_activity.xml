@@ -20,7 +20,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:elevation="4dp"
-            app:titleTextColor="#FFFFFF" />
+            app:titleTextColor="#FFFFFF"
+            />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"

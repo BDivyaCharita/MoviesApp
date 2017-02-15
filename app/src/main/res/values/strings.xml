@@ -12,7 +12,7 @@
         <string name="overview">Overview</string>
         <string name="poster">poster</string>
         <string name="sample_title">Sample title</string>
-        <string name="search">Search..</string>
+        <string name="search">Search for movie,tv show..</string>
         <string name="drawer_open">drawer open</string>
         <string name="drawer_close">drawer close</string>
     </resources>
