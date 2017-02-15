@@ -73,7 +73,7 @@ public class TvRecyclerViewDataAdapter extends RecyclerView.Adapter<TvRecyclerVi
             @Override
             public void onClick(View v) {
 
-                Intent i=new Intent(v.getContext(),MoreMovies.class);
+                Intent i=new Intent(v.getContext(),MoreTvShows.class);
                 i.putExtra("url", URL);
                 v.getContext().startActivity(i);
                 Toast.makeText(v.getContext(), "click event on more, "+sectionName , Toast.LENGTH_SHORT).show();
