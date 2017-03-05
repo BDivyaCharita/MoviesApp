@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by Divya on 05-02-2017.
  */
 
-public class MoreMoviesFinalAdapter extends RecyclerView.Adapter<MoreMoviesFinalAdapter.ItemHolder> {
+public class MoreMoviesFinalAdapter extends RecyclerView.Adapter<MoreMoviesFinalAdapter.ItemHolder>{
 
     private ArrayList<SectionDataModel> dataList;
     private Context mContext;
@@ -38,7 +38,7 @@ public class MoreMoviesFinalAdapter extends RecyclerView.Adapter<MoreMoviesFinal
 
         holder.recycler_view_list.setHasFixedSize(true);
         holder.recycler_view_list.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        holder.recycler_view_list.setAdapter(itemListDataAdapter);
+       holder.recycler_view_list.setAdapter(itemListDataAdapter);
     }
 
     @Override
@@ -55,4 +55,5 @@ public class MoreMoviesFinalAdapter extends RecyclerView.Adapter<MoreMoviesFinal
 
         }
     }
+
 }

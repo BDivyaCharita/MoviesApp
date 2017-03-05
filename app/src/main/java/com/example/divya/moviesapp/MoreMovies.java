@@ -14,6 +14,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class MoreMovies extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+   private RecyclerView recyclerView;
     private ArrayList<Movie> moreMoviesList;
     ArrayList<SectionDataModel> allSampleData;
     private MoreMoviesFinalAdapter adapter;
@@ -38,7 +40,7 @@ public class MoreMovies extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         allSampleData = new ArrayList<SectionDataModel>();
-        sendRequest();
+
         recyclerView = (RecyclerView) findViewById(R.id.more_recycler_view);
 
         adapter = new MoreMoviesFinalAdapter(this, allSampleData);
@@ -47,46 +49,8 @@ public class MoreMovies extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
 
-
+        sendRequest();
     }
-
-    private void prepareAlbums() {
-
-
-        Movie a = new Movie("True Romance", "13");
-        moreMoviesList.add(a);
-
-        a = new Movie("Xscpae", "8");
-        moreMoviesList.add(a);
-
-        a = new Movie("Maroon 5", "11");
-        moreMoviesList.add(a);
-
-        a = new Movie("Born to Die", "12");
-        moreMoviesList.add(a);
-
-        a = new Movie("Honeymoon", "14");
-        moreMoviesList.add(a);
-
-        a = new Movie("I Need a Doctor", "1");
-        moreMoviesList.add(a);
-
-        a = new Movie("Loud", "11");
-        moreMoviesList.add(a);
-
-        a = new Movie("Legend","14");
-        moreMoviesList.add(a);
-
-        a = new Movie("Hello", "11");
-        moreMoviesList.add(a);
-
-        a = new Movie("Greatest Hits","17");
-        moreMoviesList.add(a);
-
-        adapter.notifyDataSetChanged();
-    }
-
-
 
 
     private void sendRequest(){
@@ -122,20 +86,14 @@ public class MoreMovies extends AppCompatActivity {
         String url= "";
         SectionDataModel dm = new SectionDataModel();
         ArrayList<Movie> singleItem = new ArrayList<Movie>();
+        int i = ParseJSON.l;
 
-        for (int j = 0; j <= 10; j++) {
+        for (int j = 0; j < i; j++) {
             singleItem.add(new Movie(ParseJSON.poster_path[j],ParseJSON.overview[j],ParseJSON.release_date[j],ParseJSON.original_title[j],ParseJSON.original_language[j],ParseJSON.backdrop_path[j],url));
         }
         dm.setAllItemsInSection(singleItem);
 
         allSampleData.add(dm);
-
-
     }
 
 }
-
-
-
-
-

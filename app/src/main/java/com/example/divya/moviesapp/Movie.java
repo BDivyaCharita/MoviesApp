@@ -16,6 +16,7 @@ public class Movie {
     private String url;
     private ArrayList<Movie> allItems;
 
+
     public Movie(String poster_path, String overview, String release_date, String original_title, String original_language, String backdrop_path, String url) {
         this.poster_path = poster_path;
         this.overview = overview;
@@ -25,6 +26,8 @@ public class Movie {
         this.backdrop_path = backdrop_path;
         this.url = url;
 
+
+
     }
 
     public Movie(String original_title, String release_date) {
@@ -32,7 +35,7 @@ public class Movie {
         this.release_date = release_date;
     }
 
-    public Movie(ArrayList<Movie> allItems) {
+    public Movie() {
         this.allItems= allItems;
     }
 
@@ -105,4 +108,7 @@ public class Movie {
     public void setUrl(String url) {
         this.url = url;
     }
+
+
+
 }

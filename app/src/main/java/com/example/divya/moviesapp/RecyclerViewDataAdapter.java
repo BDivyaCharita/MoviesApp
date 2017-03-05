@@ -70,6 +70,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
         itemRowHolder.recycler_view_list.setAdapter(itemListDataAdapter);
 
 
+        final String finalUrl = url;
         itemRowHolder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +78,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
                 Intent i=new Intent(v.getContext(),MoreMovies.class);
                 i.putExtra("url", URL);
                 v.getContext().startActivity(i);
-                Toast.makeText(v.getContext(), "click event on more, "+sectionName , Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "click event on more, "+ finalUrl, Toast.LENGTH_SHORT).show();
             }
         });
 

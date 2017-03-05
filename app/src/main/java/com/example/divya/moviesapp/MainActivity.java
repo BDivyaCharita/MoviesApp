@@ -1,6 +1,8 @@
 package com.example.divya.moviesapp;
 
 import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,7 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+import android.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+
     DrawerLayout drawerLayout;
     ArrayList<SectionDataModel> allSampleData;
    private ProgressDialog pd;
@@ -79,14 +82,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         allSampleData = new ArrayList<SectionDataModel>();
         detail = new ArrayList<SectionDataModel>();
-        sendRequest();
+
         RecyclerView my_recycler_view = (RecyclerView) findViewById(R.id.my_recycler_view);
         pd = new ProgressDialog(MainActivity.this);
         pd.setMessage("Loading...");
-
 
         my_recycler_view.setHasFixedSize(true);
 
@@ -97,8 +98,7 @@ public class MainActivity extends AppCompatActivity {
         my_recycler_view.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         my_recycler_view.setAdapter(adapter);
-
-
+        sendRequest();
 
     }
 
@@ -113,14 +113,49 @@ public class MainActivity extends AppCompatActivity {
    public boolean onCreateOptionsMenu(Menu menu) {
        getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
 
-       MenuItem searchItem = menu.findItem(R.id.action_search);
-       SearchView searchView =
-               (SearchView) MenuItemCompat.getActionView(searchItem);
+      // MenuItem searchItem = menu.findItem(R.id.action_search);
+      // SearchView searchView =
+        //       (SearchView) MenuItemCompat.getActionView(searchItem);
+       //Log.d("search",searchView.toString());
 
        // Configure the search info and add any event listeners...
+      /* SearchManager searchManager =
+               (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+       SearchView searchView =
+               (SearchView) menu.findItem(R.id.action_search).getActionView();
+       searchView.setSearchableInfo(
+               searchManager.getSearchableInfo(getComponentName()));
+               */
+       final MenuItem searchItem = menu.findItem(R.id.action_search);
+       final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String query) {
+               // Fetch the data remotely
+               // fetchBooks(query);
+               // Reset SearchView
+               Log.d("search", query);
+               searchView.clearFocus();
+               searchView.setQuery("", false);
 
-       return super.onCreateOptionsMenu(menu);
+               searchView.setIconified(true);
+               searchItem.collapseActionView();
+               // Set activity title to search query
+               Intent intent  = new Intent(MainActivity.this, SearchActivity.class);
+               intent.putExtra("query", query);
+               startActivity(intent);
+
+               return true;
+           }
+
+           @Override
+           public boolean onQueryTextChange(String s) {
+               return false;
+           }
+       });
+       return true;
    }
+
 
     private void sendRequest(){
         String JSON_URL="";
@@ -138,9 +173,6 @@ public class MainActivity extends AppCompatActivity {
         String UPCOMING = "upcoming";
         String NOW_PLAYING = "now_playing";
         */
-
-        for (int i = 1; i <=4 ; i++) {
-            if(i==1){
                 JSON_URL = JSON_URL_POPULAR;
                 StringRequest stringRequest = new StringRequest( JSON_URL,
                         new Response.Listener<String>() {
@@ -160,10 +192,9 @@ public class MainActivity extends AppCompatActivity {
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
                 requestQueue.add(stringRequest);
 
-            }
-                else if(i==2){
+
                 JSON_URL = JSON_URL_TOP_RATED;
-                StringRequest stringRequest = new StringRequest( JSON_URL,
+                    stringRequest = new StringRequest( JSON_URL,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -176,13 +207,11 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
                             }
                         });
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                    requestQueue = Volley.newRequestQueue(this);
                 requestQueue.add(stringRequest);
 
-            }
-            else if(i==3){
                 JSON_URL = JSON_URL_UPCOMING;
-                StringRequest stringRequest = new StringRequest( JSON_URL,
+                 stringRequest = new StringRequest( JSON_URL,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -196,13 +225,12 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
                             }
                         });
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                 requestQueue = Volley.newRequestQueue(this);
                 requestQueue.add(stringRequest);
 
-            }
-            else{
+
                 JSON_URL = JSON_URL_NOW_PLAYING;
-                StringRequest stringRequest = new StringRequest( JSON_URL,
+                 stringRequest = new StringRequest( JSON_URL,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -215,12 +243,8 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
                             }
                         });
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                 requestQueue = Volley.newRequestQueue(this);
                 requestQueue.add(stringRequest);
-
-            }
-
-        }
 
     }
 

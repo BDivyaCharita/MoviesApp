@@ -31,11 +31,26 @@ public class MoreMoviesAdapter extends RecyclerView.Adapter<MoreMoviesAdapter.My
     private ArrayList<Movie> itemList;
 
 
-    public MoreMoviesAdapter(Context mContext, ArrayList<Movie> itemList) {
-        this.mContext = mContext;
-        this.itemList = itemList;
+   /* public MoreMoviesAdapter(String[] poster_path, String[] overview, String[] release_date, String[] original_title, String[] original_language, String[] backdrop_path, String[] url) {
+        super();
+        itemList = new ArrayList<Movie>();
+        for(int i=0; i<poster_path.length; i++){
+            Movie item = new Movie();
+            item.setPoster_path(poster_path[i]);
+            item.setOverview(overview[i]);
+            item.setRelease_date(release_date[i]);
+            item.setOriginal_title(original_title[i]);
+            item.setOriginal_language(original_language[i]);
+            item.setBackdrop_path(backdrop_path[i]);
+            item.setUrl(url[i]);
+            itemList.add(item);
+        }
     }
-
+    */
+    public MoreMoviesAdapter(Context mContext, ArrayList<Movie> itemList){
+        this.mContext=mContext;
+        this.itemList=itemList;
+    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())

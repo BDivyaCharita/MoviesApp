@@ -52,7 +52,6 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
             this.backdrop = (TextView) view.findViewById(R.id.backdrop);
             this.itemImage = (ImageView) view.findViewById(R.id.itemImage);
 
-
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

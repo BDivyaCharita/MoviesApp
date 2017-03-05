@@ -90,8 +90,8 @@ public class TvShowsActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView =
-                (SearchView) MenuItemCompat.getActionView(searchItem);
+  //      SearchView searchView =
+//                (SearchView) MenuItemCompat.getActionView(searchItem);
 
         // Configure the search info and add any event listeners...
 

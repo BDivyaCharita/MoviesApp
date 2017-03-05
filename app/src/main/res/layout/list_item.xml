@@ -34,8 +34,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="more"
-             />
-
+            android:textColor="@color/colorPrimary"/>
 
     </RelativeLayout>
 

@@ -4,77 +4,78 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:cardCornerRadius="5dp"
-    app:cardUseCompatPadding="true"
-    android:background="#ECEFF1">
-
-    <RelativeLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackground"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true"
+        android:background="#ECEFF1">
 
-        <ImageView
-            android:id="@+id/itemImage"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher"
-            android:contentDescription="@string/poster" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-light"
-            android:singleLine="true"
-            android:padding="5dp"
-            android:text="@string/sample_title"
-            android:textStyle="bold"
-            android:layout_below="@id/itemImage"
-            android:textColor="#263238"
-            android:textAppearance="?android:textAppearanceSmall" />
+            <ImageView
+                android:id="@+id/itemImage"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher"
+                android:contentDescription="@string/poster" />
 
-        <ImageView
-            android:id="@+id/overflow"
-            android:layout_width="@dimen/ic_album_overflow_width"
-            android:layout_height="@dimen/ic_album_overflow_height"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/itemImage"
-            android:layout_toRightOf="@id/tvTitle"
-            android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_dots" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/backdrop"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/overview"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/poster"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/language"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/date"/>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-light"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:padding="5dp"
+                android:text="@string/sample_title"
+                android:layout_below="@id/itemImage"
+                android:textColor="#000000"
+                android:textAppearance="?android:textAppearanceSmall" />
 
+            <ImageView
+                android:id="@+id/overflow"
+                android:layout_width="@dimen/ic_album_overflow_width"
+                android:layout_height="@dimen/ic_album_overflow_height"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/itemImage"
+                android:layout_toRightOf="@id/tvTitle"
+                android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_dots" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/backdrop"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/overview"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/poster"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/language"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/date"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/id"/>
+
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
-
 </LinearLayout>

@@ -26,6 +26,8 @@ public class ParseJSON{
     public static String[] backdrop_path;
     public static String[] url;
     public  static Movie movie;
+    public static int l;
+
 
 
         public static final String JSON_ARRAY = "results";
@@ -38,10 +40,10 @@ public class ParseJSON{
      public static final String KEY_ORIGINAL_LANGUAGE = "original_language";
 
     public static final String KEY_BACKDROP = "backdrop_path";
+    public static final String KEY_ID = "id";
 
     public static List<Movie> finalMovie;
-
-
+    public static int elements;
 
 
     private JSONArray users = null;
@@ -49,6 +51,17 @@ public class ParseJSON{
 
     public ParseJSON(String json) {
         this.json = json;
+    }
+
+    public ParseJSON(int i) {
+        poster_path = new String[i];
+        original_title = new String[i];
+        release_date = new String[i];
+        original_language= new String[i];
+        overview= new String[i];
+        backdrop_path= new String[i];
+        url = new String[i];
+
     }
 
     protected void parseJSON(){
@@ -65,7 +78,7 @@ public class ParseJSON{
             overview= new String[users.length()];
             backdrop_path= new String[users.length()];
             url = new String[users.length()];
-
+            elements = users.length();
 
 
             for(int i=0; i<users.length();i++){
@@ -78,9 +91,10 @@ public class ParseJSON{
                 backdrop_path[i] = jo.getString(KEY_BACKDROP);
                 Log.d("title",original_title[i]);
 
-                movie = new Movie(poster_path[i],original_title[i],release_date[i],original_language[i],overview[i],backdrop_path[i],url[i]);
-
+               // movie = new Movie(poster_path[i],original_title[i],release_date[i],original_language[i],overview[i],backdrop_path[i],url[i]);
             }
+            l=users.length();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
