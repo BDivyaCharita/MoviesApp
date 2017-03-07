@@ -1,98 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:local="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/my_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        local:popupTheme="@style/ThemeOverlay.AppCompat.Light" /><RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:id="@+id/backdrop"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="fitXY"
-            android:elevation="3dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/viewA">
+
+            <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:local="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                local:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:id="@+id/backdrop"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                android:elevation="3dp"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
-            android:paddingLeft="20dp"
             android:background="#F5F5F5"
-            android:id="@+id/linear">
+            android:id="@+id/linear"
+            android:orientation="vertical">
 
             <ImageView
-                android:padding="1dp"
+                android:padding="0dp"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_gravity="start"
                 android:id="@+id/imageViewPoster"
                 android:src="@mipmap/ic_launcher"
                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <RelativeLayout
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="12dp"
+                    android:background="#F5F5F5">
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:id="@+id/textViewTitle"
+                        android:textStyle="bold"
+                        android:text="movie"/>
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="year"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:layout_below="@+id/textViewTitle"
+                        android:id="@+id/textViewYear" />
+
+                    <TextView
+                        android:layout_margin="0dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="type"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:layout_below="@+id/textViewYear"
+                        android:id="@+id/textViewType" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
-                android:paddingLeft="10dp">
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:textAppearanceLarge"
-                    android:id="@+id/textViewTitle"
-                    android:textStyle="bold"
-                    android:text="movie"/>
-                <TextView
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="year"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:layout_below="@+id/textViewTitle"
-                    android:id="@+id/textViewYear" />
-
-                <TextView
-                    android:layout_margin="0dp"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:text="type"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:layout_below="@+id/textViewYear"
-                    android:id="@+id/textViewType" />
-
-            </RelativeLayout>
-
+                android:paddingTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/overview"
+                android:layout_below="@+id/linear"
+                android:id="@+id/head_overview"
+                android:textAppearance="?android:textAppearanceMedium"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="overview"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:layout_below="@+id/head_overview"
+                android:id="@+id/textViewIMDBid" />
+            </ScrollView>
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="@string/overview"
-            android:layout_below="@+id/linear"
-            android:id="@+id/head_overview"
-            android:textAppearance="?android:textAppearanceMedium"/>
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="overview"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:layout_below="@+id/head_overview"
-            android:id="@+id/textViewIMDBid" />
-    </RelativeLayout>
-</LinearLayout>
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_favorite_border_white_24dp"
+        app:layout_anchor="@id/viewA"
+        app:layout_anchorGravity="bottom|right|end"/>
+</android.support.design.widget.CoordinatorLayout>

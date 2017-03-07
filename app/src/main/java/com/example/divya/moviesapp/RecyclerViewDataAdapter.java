@@ -50,15 +50,15 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
             url = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
         }
 
-        else if(sectionName.equals("Upcoming")){
+        if(sectionName.equals("Upcoming")){
             url = "https://api.themoviedb.org/3/movie/upcoming?api_key=6b7085c6deee4086616c8dae1c1ada12";
         }
 
-        else if(sectionName.equals("Top Rated")){
+         if(sectionName.equals("Top Rated")){
             url = "https://api.themoviedb.org/3/movie/top_rated?api_key=6b7085c6deee4086616c8dae1c1ada12";
         }
 
-        else if(sectionName.equals("Now Playing")){
+        if(sectionName.equals("")) {
             url = "https://api.themoviedb.org/3/movie/now_playing?api_key=6b7085c6deee4086616c8dae1c1ada12";
         }
 

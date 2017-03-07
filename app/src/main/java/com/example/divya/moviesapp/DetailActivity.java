@@ -1,9 +1,14 @@
 package com.example.divya.moviesapp;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +34,11 @@ public class DetailActivity extends AppCompatActivity {
     private TextView detailType;
     private ImageView detailPoster;
     private ImageView detailBackdrop;
+    SQLiteDatabase sqLiteDatabase;
+    FavoriteDBHelper favoriteDBHelper;
+    Context context;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +58,18 @@ public class DetailActivity extends AppCompatActivity {
         detailType= (TextView) findViewById(R.id.textViewType);
         detailPoster = (ImageView) findViewById(R.id.imageViewPoster);
         detailBackdrop = (ImageView)findViewById(R.id.backdrop);
+
+        final FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               // doMyThing();
+                if(myFab.getId()==R.id.fab) {
+                    myFab.setImageDrawable(ContextCompat.getDrawable(DetailActivity.this, R.drawable.ic_favorite_white_24dp));
+                    addFavorite();
+
+                }
+            }
+        });
 
         extras = getIntent().getExtras();
 
@@ -71,6 +93,24 @@ public class DetailActivity extends AppCompatActivity {
             Glide.with(this).load(urlPoster).placeholder(R.mipmap.ic_launcher).into(detailPoster);
         }
     }
+
+    public void addFavorite(){
+        String poster = detailPoster.toString();
+        String overview = detailOverview.toString();
+        String date = detailYear.toString();
+        String title = detailTitle.toString();
+        String language = detailType.toString();
+        String backdrop = detailBackdrop.toString();
+        String url = detailBackdrop.toString();
+
+        favoriteDBHelper = new FavoriteDBHelper(context);
+        sqLiteDatabase = favoriteDBHelper.getWritableDatabase();
+        favoriteDBHelper.addInformation(poster,overview,date,title,language,backdrop,url,sqLiteDatabase);
+
+        Toast.makeText(context, "DATA SAVED", Toast.LENGTH_SHORT).show();
+        favoriteDBHelper.close();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
@@ -81,7 +121,7 @@ public class DetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void sendRequest() {
+   /* private void sendRequest() {
 
         extras = getIntent().getExtras();
 
@@ -122,6 +162,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
     }
+    */
 
 }
 

@@ -48,7 +48,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/itemImage"
                 android:layout_toRightOf="@id/tvTitle"
-                android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
+                android:layout_marginTop="7dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_dots" />
             <TextView
