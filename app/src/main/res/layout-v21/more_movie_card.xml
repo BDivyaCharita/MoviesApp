@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         >
         <ImageView
-            android:layout_width="75dp"
-            android:layout_height="90dp"
+            android:layout_width="85dp"
+            android:layout_height="95dp"
             android:id="@+id/more_image"
-            android:padding="10dp"
+            android:padding="5dp"
             android:src="@mipmap/ic_launcher"/>
         <TextView
             android:layout_width="wrap_content"

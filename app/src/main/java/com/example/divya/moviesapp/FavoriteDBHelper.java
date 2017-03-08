@@ -2,6 +2,7 @@ package com.example.divya.moviesapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -45,7 +46,22 @@ public class FavoriteDBHelper extends SQLiteOpenHelper {
         contentValues.put(FavoriteContract.FavoriteInfo.FAV_URL,url);
         db.insert(FavoriteContract.FavoriteInfo.TABLE_NAME,null,contentValues);
         Log.e("DataBaseOperations", "1 row inserted");
+        Log.e("Overview", overview);
 
+    }
+
+    public Cursor getInformations(SQLiteDatabase db)
+    {
+
+        Cursor cursor;
+        String[] projections = {FavoriteContract.FavoriteInfo.FAV_POSTER, FavoriteContract.FavoriteInfo.FAV_OVERVIEW,
+                FavoriteContract.FavoriteInfo.FAV_DATE, FavoriteContract.FavoriteInfo.FAV_TITLE,
+                FavoriteContract.FavoriteInfo.FAV_LANGUAGE, FavoriteContract.FavoriteInfo.FAV_BACKDROP,
+                FavoriteContract.FavoriteInfo.FAV_URL};
+
+        cursor=db.query(FavoriteContract.FavoriteInfo.TABLE_NAME, projections,null,null,null,null,null);
+
+        return cursor;
     }
 
     @Override

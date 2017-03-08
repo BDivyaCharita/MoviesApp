@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         navigationView = (NavigationView)findViewById(R.id.navigation_view);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -69,12 +70,19 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId())
                {
                    case R.id.movies:
-                       //
+                       //drawerLayout.closeDrawer();
                        break;
                    case R.id.tvShows:
                        intent = new Intent(MainActivity.this, TvShowsActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                        startActivity(intent);
+                       break;
+                   case R.id.favorites:
+                       intent = new Intent(MainActivity.this, FavoriteListActivity.class);
+                       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                       startActivity(intent);
+                       break;
+
                }
 
                 return false;
@@ -138,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                searchView.clearFocus();
                searchView.setQuery("", false);
 
-               searchView.setIconified(true);
+              // searchView.setIconified(true);
                searchItem.collapseActionView();
                // Set activity title to search query
                Intent intent  = new Intent(MainActivity.this, SearchActivity.class);

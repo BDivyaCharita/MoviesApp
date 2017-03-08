@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,10 +35,12 @@ public class DetailActivity extends AppCompatActivity {
     private TextView detailType;
     private ImageView detailPoster;
     private ImageView detailBackdrop;
+    private FloatingActionButton myFab;
     SQLiteDatabase sqLiteDatabase;
     FavoriteDBHelper favoriteDBHelper;
-    Context context;
+    Context context= this;
 
+    private String original_title, release_date, original_language, overview, poster_path, backdrop_path;
 
 
     @Override
@@ -47,10 +50,13 @@ public class DetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        setStatusBarTranslucent(true);
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowHomeEnabled(true);
+
+        DetailActivity.this.setTitle("");
 
         detailTitle = (TextView) findViewById(R.id.textViewTitle);
         detailYear = (TextView) findViewById(R.id.textViewYear);
@@ -62,10 +68,10 @@ public class DetailActivity extends AppCompatActivity {
         final FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               // doMyThing();
+
                 if(myFab.getId()==R.id.fab) {
                     myFab.setImageDrawable(ContextCompat.getDrawable(DetailActivity.this, R.drawable.ic_favorite_white_24dp));
-                    addFavorite();
+                    addFavorite(v);
 
                 }
             }
@@ -74,12 +80,12 @@ public class DetailActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
 
         if (extras != null) {
-            String original_title = extras.getString("title");
-            String release_date = extras.getString("date");
-            String original_language = extras.getString("language");
-            String overview = extras.getString("overview");
-            String poster_path = extras.getString("poster");
-            String backdrop_path = extras.getString("backdrop");
+             original_title = extras.getString("title");
+             release_date = extras.getString("date");
+             original_language = extras.getString("language");
+             overview = extras.getString("overview");
+             poster_path = extras.getString("poster");
+             backdrop_path = extras.getString("backdrop");
 
 
             String urlBackdrop ="http://image.tmdb.org/t/p/w780/"+backdrop_path;
@@ -94,21 +100,29 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    public void addFavorite(){
-        String poster = detailPoster.toString();
-        String overview = detailOverview.toString();
-        String date = detailYear.toString();
-        String title = detailTitle.toString();
-        String language = detailType.toString();
-        String backdrop = detailBackdrop.toString();
-        String url = detailBackdrop.toString();
+    public void addFavorite(View view){
+        String poster = poster_path;
+        String overview = this.overview;
+        String date = release_date;
+        String title = original_title;
+        String language = original_language;
+        String backdrop = backdrop_path;
+        String url = backdrop_path;
 
         favoriteDBHelper = new FavoriteDBHelper(context);
         sqLiteDatabase = favoriteDBHelper.getWritableDatabase();
         favoriteDBHelper.addInformation(poster,overview,date,title,language,backdrop,url,sqLiteDatabase);
 
-        Toast.makeText(context, "DATA SAVED", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "DATA SAVED", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, overview, Toast.LENGTH_SHORT).show();
         favoriteDBHelper.close();
+    }
+    protected void setStatusBarTranslucent(boolean makeTranslucent) {
+        if (makeTranslucent) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }
 
     @Override

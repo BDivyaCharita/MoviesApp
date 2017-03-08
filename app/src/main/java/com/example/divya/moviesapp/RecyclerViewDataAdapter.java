@@ -43,46 +43,75 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<RecyclerViewDa
         final String sectionName = dataList.get(i).getHeaderTitle();
 
         final ArrayList singleSectionItems = dataList.get(i).getAllItemsInSection();
-        String url = "";
+
 
         itemRowHolder.itemTitle.setText(sectionName);
-        if(sectionName.equals("Popular")){
-            url = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
-        }
 
-        if(sectionName.equals("Upcoming")){
-            url = "https://api.themoviedb.org/3/movie/upcoming?api_key=6b7085c6deee4086616c8dae1c1ada12";
-        }
 
-         if(sectionName.equals("Top Rated")){
-            url = "https://api.themoviedb.org/3/movie/top_rated?api_key=6b7085c6deee4086616c8dae1c1ada12";
-        }
-
-        if(sectionName.equals("")) {
-            url = "https://api.themoviedb.org/3/movie/now_playing?api_key=6b7085c6deee4086616c8dae1c1ada12";
-        }
 
         SectionListDataAdapter itemListDataAdapter = new SectionListDataAdapter(mContext,singleSectionItems);
-        final String URL = url;
+
 
         itemRowHolder.recycler_view_list.setHasFixedSize(true);
         itemRowHolder.recycler_view_list.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         itemRowHolder.recycler_view_list.setAdapter(itemListDataAdapter);
 
 
-        final String finalUrl = url;
+      //  final String finalUrl = url;
+
         itemRowHolder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String url = "";
+                Intent i;
+                switch (sectionName) {
+                    case "Popular":
+                        url = "https://api.themoviedb.org/3/movie/popular?api_key=6b7085c6deee4086616c8dae1c1ada12";
+                      //  final String URL = url;
+                        i=new Intent(v.getContext(),MoreMovies.class);
+                        i.putExtra("url", url);
+                        v.getContext().startActivity(i);
+                        Toast.makeText(v.getContext(), "click event on more, "+ url, Toast.LENGTH_SHORT).show();
 
-                Intent i=new Intent(v.getContext(),MoreMovies.class);
-                i.putExtra("url", URL);
-                v.getContext().startActivity(i);
-                Toast.makeText(v.getContext(), "click event on more, "+ finalUrl, Toast.LENGTH_SHORT).show();
-            }
+                        break;
+                    case "Upcoming":
+                        url = "https://api.themoviedb.org/3/movie/upcoming?api_key=6b7085c6deee4086616c8dae1c1ada12";
+                      // final String  URL = url;
+                         i=new Intent(v.getContext(),MoreMovies.class);
+                        i.putExtra("url", url);
+                        v.getContext().startActivity(i);
+                        Toast.makeText(v.getContext(), "click event on more, "+ url, Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case "Top Rated":
+                        url = "https://api.themoviedb.org/3/movie/top_rated?api_key=6b7085c6deee4086616c8dae1c1ada12";
+                       // final String URL = url;
+                         i=new Intent(v.getContext(),MoreMovies.class);
+                        i.putExtra("url", url);
+                        v.getContext().startActivity(i);
+                        Toast.makeText(v.getContext(), "click event on more, "+ url, Toast.LENGTH_SHORT).show();
+
+                        break;
+
+                    //if(sectionName.equals("Now Playing")) {
+                    case "Now Playing":
+                        url = "https://api.themoviedb.org/3/movie/now_playing?api_key=6b7085c6deee4086616c8dae1c1ada12";
+                       // final String URL = url;
+                         i=new Intent(v.getContext(),MoreMovies.class);
+                        i.putExtra("url", url);
+                        v.getContext().startActivity(i);
+                        Toast.makeText(v.getContext(), "click event on more, "+ url, Toast.LENGTH_SHORT).show();
+
+                        break;
+                    default:
+                        url = "";
+                        break;
+                }
+
+                     }
         });
 
-
+   
       /* Glide.with(mContext)
                 .load(itemRowHolder.get)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)

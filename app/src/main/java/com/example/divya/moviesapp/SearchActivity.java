@@ -206,10 +206,11 @@ public class SearchActivity extends AppCompatActivity {
 
         String url= "";
 
-        int i = ParseJSON.l;
+
 
         SectionDataModel dm = new SectionDataModel();
         ArrayList<Movie> singleItem = new ArrayList<Movie>();
+        int i = ParseJSON.l;
 
         for ( int j =0; j < i; j++) {
 
